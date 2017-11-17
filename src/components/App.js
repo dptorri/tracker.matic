@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery'
 import Log from './Log'
 
+import NewTask from './NewTask'
+
 export default class App extends React.Component {
 
     constructor(props) {
@@ -40,9 +42,13 @@ export default class App extends React.Component {
 
             //header
 
+            
+
             //post_task
             <div id="mainPage">
 
+            <NewTask />
+            
                <Log tasks={this.state.tasks} />
                 
                 {/*this is an alternative to a for*/}
