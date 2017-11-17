@@ -1,0 +1,19 @@
+{
+  "name": "tracker.matic",
+  "version": "1.0.0",
+  "description": "App to track time spent in tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dptorri/tracker.matic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dptorri/tracker.matic/issues"
+  },
+  "homepage": "https://github.com/dptorri/tracker.matic#readme"
+}
