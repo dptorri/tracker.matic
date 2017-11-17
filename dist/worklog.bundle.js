@@ -102,9 +102,23 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'form',
                         { action: '' },
-                        _react2.default.createElement('input', { type: 'text', className: 'name' }),
-                        _react2.default.createElement('br', null),
-                        _react2.default.createElement('input', { type: 'text', className: 'name' })
+                        _react2.default.createElement(
+                            'select',
+                            { name: '', id: '' },
+                            this.state.tasks.map(function (task) {
+                                return _react2.default.createElement(
+                                    'option',
+                                    { value: task.id },
+                                    task.id
+                                );
+                            })
+                        ),
+                        _react2.default.createElement('input', { type: 'text', value: 'duration' }),
+                        _react2.default.createElement(
+                            'button',
+                            { type: 'submit' },
+                            'send'
+                        )
                     ),
                     'l',
                     _react2.default.createElement(

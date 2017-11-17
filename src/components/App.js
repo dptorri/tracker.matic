@@ -39,8 +39,15 @@ export default class App extends React.Component {
             <div id="mainPage">
 
                 <form action="">
-                    <input type="text" className="name" /><br />
-                    <input type="text" className="name" />
+                   <select name="" id="">
+                   { this.state.tasks.map(task => 
+                       <option value={ task.id }>{ task.id }
+                        </option>)}
+                   </select>
+
+                    <input type="text" value="duration"/>
+                    <button type="submit">send</button>
+
                 </form>
                 l
                 {/*this is an alternative to a for*/}
