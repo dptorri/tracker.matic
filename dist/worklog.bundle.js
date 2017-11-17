@@ -235,10 +235,8 @@ var Log = function (_React$Component) {
                 method: 'post',
                 url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/logs/create',
                 data: {
-
                     task_id: this.state.task_id,
                     duration: this.state.duration
-
                 },
                 success: function success(data) {
                     _this2.setState({
@@ -247,7 +245,6 @@ var Log = function (_React$Component) {
                     });
                     console.log(data);
                 }
-
             });
         }
     }, {
@@ -265,6 +262,11 @@ var Log = function (_React$Component) {
                     { value: this.state.task_id, onChange: function onChange(event) {
                             return _this3.task_id_Changed(event);
                         }, name: 'duration', id: '' },
+                    _react2.default.createElement(
+                        'option',
+                        { value: '' },
+                        'Select the task'
+                    ),
                     this.props.tasks.map(function (task) {
                         return _react2.default.createElement(
                             'option',
