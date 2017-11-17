@@ -10,7 +10,7 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
-            tasks: [{id:'1',name:'clean'},{id:'2',name:'dirty'}]
+            tasks: []
 
         }
     }
@@ -18,12 +18,14 @@ export default class App extends React.Component {
     componentDidMount() {
         $.ajax({
             method: 'post',
-            url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks',
+            url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks/totals',
             dataType: 'json',
             success: (data) => {
                 this.setState({
                         tasks: data
+                        
             })
+            console.log(data);
         }
         });
     }
@@ -50,6 +52,9 @@ export default class App extends React.Component {
                         <li key={task.id}>Task id: { task.id } 
                         <div key={task.name}>Task Name: 
                         { task.name }
+                        </div>
+                        <div key={task.total}>Task Duration: 
+                        { task.total }
                         </div>
                         </li>)  }
                     </ul>

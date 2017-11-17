@@ -69,7 +69,7 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            tasks: [{ id: '1', name: 'clean' }, { id: '2', name: 'dirty' }]
+            tasks: []
 
         };
         return _this;
@@ -82,12 +82,14 @@ var App = function (_React$Component) {
 
             _jquery2.default.ajax({
                 method: 'post',
-                url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks',
+                url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks/totals',
                 dataType: 'json',
                 success: function success(data) {
                     _this2.setState({
                         tasks: data
+
                     });
+                    console.log(data);
                 }
             });
         }
@@ -123,6 +125,12 @@ var App = function (_React$Component) {
                                         { key: task.name },
                                         'Task Name:',
                                         task.name
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { key: task.total },
+                                        'Task Duration:',
+                                        task.total
                                     )
                                 );
                             })
@@ -187,14 +195,30 @@ var Log = function (_React$Component) {
 
         _this.state = {
             tasks: [],
-            duration: 0
+            duration: '',
+            task_id: 1
         };
         return _this;
     }
 
     //to use tasks you need to pass it as a prop
 
+
     _createClass(Log, [{
+        key: 'textChanged',
+        value: function textChanged(event) {
+            this.setState({
+                duration: event.target.value
+            });
+        }
+    }, {
+        key: 'task_id_Changed',
+        value: function task_id_Changed(event) {
+            this.setState({
+                task_id: event.target.value
+            });
+        }
+    }, {
         key: 'formSubmitted',
         value: function formSubmitted(event) {
             var _this2 = this;
@@ -203,16 +227,21 @@ var Log = function (_React$Component) {
 
             _jquery2.default.ajax({
                 method: 'post',
-                url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks',
+                url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/logs/create',
                 data: {
+
+                    task_id: this.state.task_id,
                     duration: this.state.duration
+
                 },
                 success: function success(data) {
                     _this2.setState({
                         tasks: data
 
                     });
+                    console.log(data);
                 }
+
             });
         }
     }, {
@@ -227,7 +256,9 @@ var Log = function (_React$Component) {
                     } },
                 _react2.default.createElement(
                     'select',
-                    { name: 'duration', id: '' },
+                    { value: this.state.task_id, onChange: function onChange(event) {
+                            return _this3.task_id_Changed(event);
+                        }, name: 'duration', id: '' },
                     this.props.tasks.map(function (task) {
                         return _react2.default.createElement(
                             'option',
@@ -236,7 +267,9 @@ var Log = function (_React$Component) {
                         );
                     })
                 ),
-                _react2.default.createElement('input', { type: 'text', value: this.state.duration, placeholder: 'enter the duration' }),
+                _react2.default.createElement('input', { type: 'text', value: this.state.duration, onChange: function onChange(event) {
+                        return _this3.textChanged(event);
+                    }, placeholder: 'enter the duration' }),
                 _react2.default.createElement(
                     'button',
                     { type: 'submit' },
