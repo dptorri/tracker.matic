@@ -17,25 +17,26 @@ export default class Log extends React.Component {
     //to use tasks you need to pass it as a prop
 
     formSubmitted(event){
-        event.preventDefault();
+            event.preventDefault();
 
-        $.ajax({
-            method: 'post',
-            url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks',
-            data: {
-                duration: this.state.taskDuration
-            },
-            success: (data) => {
-                this.setState({
-                    tasks: data
+            $.ajax({
+                method: 'post',
+                url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks',
+                data: {
+                    duration: this.state.duration
+                },
+                success: (data) => {
+                    this.setState({
+                        tasks: data
 
-                })
-            }
-        });
+                    })
+                }
+            });
+        }
 
 
-
-            render(){
+            render()
+            {
                 return(
                     <form action="" onSubmit={(event) => this.formSubmitted(event)}>
                         
@@ -45,7 +46,7 @@ export default class Log extends React.Component {
                             </option>)}
                         </select>
 
-                    <input type="text" value={this.state.taskDuration} placeholder="enter the duration"/>
+                    <input type="text" value={this.state.duration} placeholder="enter the duration"/>
                     <button type="submit">send</button>
 
                 </form>

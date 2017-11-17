@@ -1,20 +1,20 @@
 webpackJsonp([0],{
 
-/***/ 15:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _react = __webpack_require__(2);
+var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(29);
+var _App = __webpack_require__(28);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -24,7 +24,7 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, null), do
 
 /***/ }),
 
-/***/ 29:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36,19 +36,19 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(2);
+var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _jquery = __webpack_require__(28);
+var _jquery = __webpack_require__(8);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _Log = __webpack_require__(30);
+var _Log = __webpack_require__(29);
 
 var _Log2 = _interopRequireDefault(_Log);
 
@@ -145,11 +145,112 @@ exports.default = App;
 
 /***/ }),
 
-/***/ 30:
-/***/ (function(module, exports) {
+/***/ 29:
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: C:/Users/dptor/Documents/GitHub/tracker.matic/src/components/Log.js: Unexpected token, expected , (27:12)\n\n\u001b[0m \u001b[90m 25 | \u001b[39m                duration\u001b[33m:\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mstate\u001b[33m.\u001b[39mtaskDuration\n \u001b[90m 26 | \u001b[39m            }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 27 | \u001b[39m            success\u001b[33m:\u001b[39m (data) \u001b[33m=>\u001b[39m {\n \u001b[90m    | \u001b[39m            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 28 | \u001b[39m                \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msetState({\n \u001b[90m 29 | \u001b[39m                    tasks\u001b[33m:\u001b[39m data\n \u001b[90m 30 | \u001b[39m\u001b[0m\n");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _jquery = __webpack_require__(8);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Log = function (_React$Component) {
+    _inherits(Log, _React$Component);
+
+    function Log(props) {
+        _classCallCheck(this, Log);
+
+        var _this = _possibleConstructorReturn(this, (Log.__proto__ || Object.getPrototypeOf(Log)).call(this, props));
+
+        _this.state = {
+            tasks: [],
+            duration: 0
+        };
+        return _this;
+    }
+
+    //to use tasks you need to pass it as a prop
+
+    _createClass(Log, [{
+        key: 'formSubmitted',
+        value: function formSubmitted(event) {
+            var _this2 = this;
+
+            event.preventDefault();
+
+            _jquery2.default.ajax({
+                method: 'post',
+                url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks',
+                data: {
+                    duration: this.state.duration
+                },
+                success: function success(data) {
+                    _this2.setState({
+                        tasks: data
+
+                    });
+                }
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this3 = this;
+
+            return _react2.default.createElement(
+                'form',
+                { action: '', onSubmit: function onSubmit(event) {
+                        return _this3.formSubmitted(event);
+                    } },
+                _react2.default.createElement(
+                    'select',
+                    { name: 'duration', id: '' },
+                    this.props.tasks.map(function (task) {
+                        return _react2.default.createElement(
+                            'option',
+                            { value: task.id },
+                            task.id
+                        );
+                    })
+                ),
+                _react2.default.createElement('input', { type: 'text', value: this.state.duration, placeholder: 'enter the duration' }),
+                _react2.default.createElement(
+                    'button',
+                    { type: 'submit' },
+                    'send'
+                )
+            );
+        }
+    }]);
+
+    return Log;
+}(_react2.default.Component);
+
+exports.default = Log;
 
 /***/ })
 
-},[15]);
+},[16]);
