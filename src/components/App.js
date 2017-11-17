@@ -1,37 +1,63 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export default class App extends React.Component{
-    render(){
-        return(
+import $ from 'jquery'
 
-//header
+export default class App extends React.Component {
 
-//post_task
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tasks: []
+        }
+    }
+
+    componentDidMount() {
+        $.ajax({
+            method: 'post',
+            url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks',
+            dataType: 'json',
+            success: (data) => {
+                this.setState({
+                        tasks: data
+            })
+        }
+        });
+    }
+
+
+
+    render() {
+        //must define in the render
+        //let tasks = []
+        return (
+
+            //header
+
+            //post_task
             <div id="mainPage">
-                
+
                 <form action="">
-                    <input type="text" className="name"/><br />
-                    <input type="text" className="name"/>
+                    <input type="text" className="name" /><br />
+                    <input type="text" className="name" />
                 </form>
-                
-                <ul>
-                    <li>Time spent: 3hrs</li>
-                    <li>Task id: 1</li>
-                </ul>
-                <ul>
-                    <li>Time spent: 1hrs</li>
-                    <li>Task id: 2</li>
-                </ul>
-                <ul>
-                    <li>Time spent: 10hrs</li>
-                    <li>Task id: 3</li>
-                </ul>
-
+                l
+                {/*this is an alternative to a for*/}
+                <div>
+                    <ul>
+                        { this.state.tasks.map(task => 
+                        <li key={task.id}>Task id: { task.id } 
+                        <div key={task.name}>Task Name: 
+                        { task.name }
+                        </div>
+                        </li>)  }
+                    </ul>
+                </div>
             </div>
-//list_task
+            //list_task
 
-//footer   
+            //footer   
 
 
         );
