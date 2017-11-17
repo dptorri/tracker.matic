@@ -327,21 +327,101 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var NewTask = function (_React$Component) {
     _inherits(NewTask, _React$Component);
 
-    function NewTask() {
+    function NewTask(props) {
         _classCallCheck(this, NewTask);
 
-        return _possibleConstructorReturn(this, (NewTask.__proto__ || Object.getPrototypeOf(NewTask)).apply(this, arguments));
+        //set initial state of this component
+        var _this = _possibleConstructorReturn(this, (NewTask.__proto__ || Object.getPrototypeOf(NewTask)).call(this, props));
+
+        _this.state = {
+
+            TaskID: '',
+            TaskName: ''
+        };
+
+        _this.handleTaskID = _this.handleTaskID.bind(_this);
+        _this.handleTaskName = _this.handleTaskName.bind(_this);
+
+        return _this;
     }
 
     _createClass(NewTask, [{
+        key: 'formSubmitted',
+        value: function formSubmitted(event) {
+            var _this2 = this;
+
+            event.preventDefault();
+
+            _jquery2.default.ajax({
+                method: 'post',
+                url: 'http://classes.codingbootcamp.cz/assets/classes/react-hackathon/api/tasks/create',
+                data: {
+                    task_id: this.state.TaskID,
+                    name: this.state.TaskName,
+                    user_id: 'david'
+                },
+
+                success: function success(data) {
+
+                    _this2.setState({
+                        TaskID: '',
+                        TaskName: ''
+                    });
+                    //console.log(data)
+                }
+            });
+        }
+    }, {
+        key: 'handleTaskID',
+        value: function handleTaskID(event) {
+            this.setState({
+                TaskID: event.target.value
+            });
+        }
+    }, {
+        key: 'handleTaskName',
+        value: function handleTaskName(event) {
+            this.setState({
+                TaskName: event.target.value
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
             return _react2.default.createElement(
                 'div',
                 { id: 'NewTask' },
-                'Task Name: ',
-                _react2.default.createElement('br', null),
-                _react2.default.createElement('input', { type: 'text', name: 'taskname' })
+                _react2.default.createElement(
+                    'h4',
+                    null,
+                    'Insert new task:'
+                ),
+                _react2.default.createElement(
+                    'form',
+                    { action: '', onSubmit: function onSubmit(event) {
+                            return _this3.formSubmitted(event);
+                        } },
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        'Task ID:'
+                    ),
+                    _react2.default.createElement('input', { id: 'field1', value: this.state.TaskID, onChange: this.handleTaskID, type: 'text', name: 'task_id' }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        'Task Name:'
+                    ),
+                    _react2.default.createElement('input', { id: 'field2', value: this.state.TaskName, onChange: this.handleTaskName, type: 'text', name: 'task_name' }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('input', { type: 'submit', value: 'add' }),
+                    _react2.default.createElement('br', null)
+                ),
+                _react2.default.createElement('br', null)
             );
         }
     }]);
