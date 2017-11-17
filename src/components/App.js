@@ -42,9 +42,13 @@ export default class App extends React.Component {
 
             //header
 
+            
+
             //post_task
             <div id="mainPage">
 
+            <NewTask />
+            
                <Log tasks={this.state.tasks} />
                 
                 {/*this is an alternative to a for*/}
