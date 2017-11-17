@@ -7,7 +7,6 @@ export default class Log extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             tasks: [],
             duration: '',
@@ -63,8 +62,10 @@ export default class Log extends React.Component {
                 return(
                     <form action="" onSubmit={(event) => this.formSubmitted(event)}>
                         
-                        <select  value={this.state.task_id} onChange={ (event) => this.task_id_Changed(event) } name="duration" id="">
+                        <select value={this.state.task_id} onChange={ (event) => this.task_id_Changed(event) } name="duration" id="">
+                        <option value="">Select the task</option>                        
                         { this.props.tasks.map(task => 
+
                             <option value={ task.id }>{ task.id }
                             </option>)}
                         </select>
