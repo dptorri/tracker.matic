@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import $ from 'jquery'
+import Log from './Log'
 
 export default class App extends React.Component {
 
@@ -26,7 +27,7 @@ export default class App extends React.Component {
         });
     }
 
-
+  
 
     render() {
         //must define in the render
@@ -38,18 +39,8 @@ export default class App extends React.Component {
             //post_task
             <div id="mainPage">
 
-                <form action="">
-                   <select name="" id="">
-                   { this.state.tasks.map(task => 
-                       <option value={ task.id }>{ task.id }
-                        </option>)}
-                   </select>
-
-                    <input type="text" value="duration"/>
-                    <button type="submit">send</button>
-
-                </form>
-                l
+               <Log tasks={this.state.tasks} />
+                
                 {/*this is an alternative to a for*/}
                 <div>
                     <ul>
