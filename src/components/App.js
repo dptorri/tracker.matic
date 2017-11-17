@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery'
 import Log from './Log'
 
+import NewTask from './NewTask'
+
 export default class App extends React.Component {
 
     constructor(props) {
