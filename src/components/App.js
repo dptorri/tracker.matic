@@ -10,7 +10,8 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
-            tasks: []
+            tasks: [{id:'1',name:'clean'},{id:'2',name:'dirty'}]
+
         }
     }
 
@@ -30,6 +31,7 @@ export default class App extends React.Component {
   
 
     render() {
+        
         //must define in the render
         //let tasks = []
         return (
